@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Add Post</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+<header class="container padding mt-4"><h1 class="alert alert-primary text-center">Simple Kanban Board</h1></header>
+<div class="container my-5">
+  <h3> Add Task</h3>
+  <div class="card">
+    <div class="card-body">
+      <div class="col-md-10">
+        <form action="#" th:action="@{/edit_task/{id}(id=${task.id})}" th:object="${task}" method="post">
+          <div class="row">
+            <div class="form-group col-md-8">
+              <label class="col-form-label">task</label>
+              <input type="text" th:field="*{body}" class="form-control"
+                     id="body" placeholder="Add task here..." />
+            </div>
+
+            <div class="col-md-6">
+              <input type="submit" class="btn btn-primary" value=" Submit ">
+            </div>
+            <input type="hidden" id="position" th:field="*{position}">
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="container mt-4 text-center">
+  <p>Simple Kanban Board © 2021</p>
+</footer>
+</body>
+</html>
