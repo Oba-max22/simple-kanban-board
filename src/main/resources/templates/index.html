@@ -19,8 +19,11 @@
     </li>
   </ul>
 </nav>
-<h3  th:text="${message}" class="text-primary"> </h3>
-<header class="container padding mt-5"><h1 class="alert alert-primary text-center">Simple Kanban Board</h1></header>
+<header class="container padding mt-5 alert alert-primary">
+  <h1 class=" text-center">Simple Kanban Board</h1>
+  <h3  th:text="${message}" class="text-white text-center"> </h3>
+  <h4 class="text-center"  th:text="${'Team: ' + user.team}"></h4>
+</header>
 <div class="container padding mt-4">
   <div class="d-flex flex-row flex-wrap text-center">
     <div class="col-xs-12 col-sm-6 col-md-4 card shadow mt-4 bg-light">
@@ -28,6 +31,7 @@
       <hr class="my-4">
       <div class = "alert border padding bg-white shadow" th:each="t : ${tasks}" th:if="${t.position.equals('todo')}">
         <h4 class="text-primary"  th:text="${t.body}"></h4>
+        <a th:href="@{/doing/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-arrow-left ml-2"></i></a>
         <a th:href="@{/edit/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-user-edit ml-2"></i></a>
         <a th:href="@{/delete/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-user-times ml-2"></i></a>
         <a th:href="@{/doing/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-arrow-right ml-2"></i></a>
@@ -64,6 +68,7 @@
         <a th:href="@{/doing/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-arrow-left ml-2"></i></a>
         <a th:href="@{/edit/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-user-edit ml-2"></i></a>
         <a th:href="@{/delete/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-user-times ml-2"></i></a>
+        <a th:href="@{/todo/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-arrow-right ml-2"></i></a>
       </div>
       <form th:action="@{/createTask/{position}(position=${'done'})}" th:object="${task}" method="post">
         <input class="form-control btn-outline-primary btn-block" type="text" name="task" th:field="*{body}">
