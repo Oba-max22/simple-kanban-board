@@ -18,4 +18,8 @@ public class Task {
 
     @Column(name = "position", nullable = false)
     private String position;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 }
