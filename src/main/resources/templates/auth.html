@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <title>Login</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-light">
+    <ul class="navbar-nav d-flex align-items-between">
+        <li class="nav-item">
+            <a class="nav-link" href="#">SKB</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="modal" data-target="#myModal">SignUp</a>
+        </li>
+    </ul>
+</nav>
+<header class="container padding mt-5">
+    <h1 class="alert alert-primary text-center">Simple Kanban Board</h1>
+</header>
+<div class="d-flex flex-row justify-content-center align-content-center">
+    <div class="col-md-3 mt-5">
+        <form action="board.html" th:action="@{/auth/login}" th:object="${register_user}">
+            <p th:text="${error}" style="color: darkred"></p>
+            <input type="email" placeholder="Email Addresss" th:field="*{email}" class="form-control">
+            <input type="text" placeholder="Password" th:field="*{password}" class="form-control mt-3">
+            <input type="submit" value="Login" class="btn btn-primary btn-block mt-3">
+        </form>
+    </div>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div class="d-flex flex-column">
+                        <span class="frm-header">Sign Up</span>
+                        <span class="frm-spn1">It's quick and easy.</span>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form action="auth.html" th:action="@{/auth/register}" th:object="${register_user}" method="post">
+                        <input type="text" placeholder="Username" th:field="*{username}" class="form-control" required>
+                        <input type="email" placeholder="Email Addresss" th:field="*{email}" class="form-control mt-3" required>
+                        <input type="text" placeholder="Password" th:field="*{password}" class="form-control mt-3" required>
+                        <input type="text" placeholder="Team" th:field="*{team}" class="form-control mt-3">
+                        <input type="submit" value="SignUp" class="btn btn-primary btn-block mt-3">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

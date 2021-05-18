@@ -9,32 +9,38 @@
   <title>Kanban Board</title>
 </head>
 <body>
-<header class="container padding mt-4"><h1 class="alert alert-primary text-center">Simple Kanban Board</h1></header>
+<nav class="navbar navbar-expand-sm bg-light">
+  <ul class="navbar-nav d-flex align-items-between">
+    <li class="nav-item">
+      <a class="nav-link" href="#">SKB</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/auth/logout}">Logout</a>
+    </li>
+  </ul>
+</nav>
+<h3  th:text="${message}" class="text-primary"> </h3>
+<header class="container padding mt-5"><h1 class="alert alert-primary text-center">Simple Kanban Board</h1></header>
 <div class="container padding mt-4">
   <div class="d-flex flex-row flex-wrap text-center">
-    <div class="col-xs-12 col-sm-6 col-md-4 card shadow mt-4 bg-danger">
-      <div class="bg-danger">
-        <h1 class="text-white">TO DO</h1>
-      </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 card shadow mt-4 bg-light">
+      <h1 class="text-primary">TO DO</h1>
       <hr class="my-4">
       <div class = "alert border padding bg-white shadow" th:each="t : ${tasks}" th:if="${t.position.equals('todo')}">
-        <h4 class="text-danger"  th:text="${t.body}"></h4>
-        <a th:href="@{/edit/{id}(id=${t.id})}" class="btn btn-outline-danger"><i class="fas fa-user-edit ml-2"></i></a>
-        <a th:href="@{/delete/{id}(id=${t.id})}" class="btn btn-outline-danger"><i class="fas fa-user-times ml-2"></i></a>
-        <a th:href="@{/doing/{id}(id=${t.id})}" class="btn btn-outline-danger"><i class="fas fa-arrow-right ml-2"></i></a>
+        <h4 class="text-primary"  th:text="${t.body}"></h4>
+        <a th:href="@{/edit/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-user-edit ml-2"></i></a>
+        <a th:href="@{/delete/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-user-times ml-2"></i></a>
+        <a th:href="@{/doing/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-arrow-right ml-2"></i></a>
       </div>
       <form th:action="@{/createTask/{position}(position=${'todo'})}" th:object="${task}" method="post">
-        <input class="form-control btn-white btn-block" type="text" name="task" th:field="*{body}">
-        <input class="form-control btn-block" type="hidden" name="task" th:field="*{position}">
-        <input class="btn bg-white text-danger" type="submit" value="Add Task">
+        <input class="form-control btn-outline-primary btn-block" type="text" name="task" th:field="*{body}">
+        <input class="form-control btn-outline-primary btn-block" type="hidden" name="task" th:field="*{position}">
+        <input class="btn btn-outline-primary" type="submit" value="Add Task">
       </form>
     </div>
 
-    <div class="col-xs-12 col-sm-6 col-md-4 card shadow mt-4 bg-primary">
-      <div class="bg-primary">
-        <h1 class="text-white">DOING</h1>
-      </div>
-
+    <div class="col-xs-12 col-sm-6 col-md-4 card shadow mt-4 bg-light">
+      <h1 class="text-primary">DOING</h1>
       <hr class="my-4">
       <div class = "alert border padding bg-white shadow" th:each="t : ${tasks}" th:if="${t.position.equals('doing')}">
         <h4 class="text-primary" th:text="${t.body}"></h4>
@@ -44,27 +50,25 @@
         <a th:href="@{/done/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-arrow-right ml-2"></i></a>
       </div>
       <form th:action="@{/createTask/{position}(position=${'doing'})}" th:object="${task}"  method="post">
-        <input class="form-control btn-white btn-block" type="text" name="task" th:field="*{body}">
-        <input class="form-control btn-block" type="hidden" name="task" th:field="*{position}">
-        <input class="btn bg-white text-primary" type="submit" value="Add Task">
+        <input class="form-control btn-outline-primary btn-block" type="text" name="task" th:field="*{body}">
+        <input class="form-control btn-outline-primary btn-block" type="hidden" name="task" th:field="*{position}">
+        <input class="btn btn-outline-primary text-primary" type="submit" value="Add Task">
       </form>
     </div>
 
-    <div class="col-xs-12 col-sm-6 col-md-4 card shadow mt-4 bg-success">
-      <div class="bg-success">
-        <h1 class="text-white">DONE</h1>
-      </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 card shadow mt-4 bg-light">
+      <h1 class="text-primary">DONE</h1>
       <hr class="my-4">
       <div class = "alert border padding bg-white shadow" th:each="t : ${tasks}" th:if="${t.position.equals('done')}">
-        <h4 class="text-success"  th:text="${t.body}"></h4>
-        <a th:href="@{/doing/{id}(id=${t.id})}" class="btn btn-outline-success"><i class="fas fa-arrow-left ml-2"></i></a>
-        <a th:href="@{/edit/{id}(id=${t.id})}" class="btn btn-outline-success"><i class="fas fa-user-edit ml-2"></i></a>
-        <a th:href="@{/delete/{id}(id=${t.id})}" class="btn btn-outline-success"><i class="fas fa-user-times ml-2"></i></a>
+        <h4 class="text-primary"  th:text="${t.body}"></h4>
+        <a th:href="@{/doing/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-arrow-left ml-2"></i></a>
+        <a th:href="@{/edit/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-user-edit ml-2"></i></a>
+        <a th:href="@{/delete/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-user-times ml-2"></i></a>
       </div>
       <form th:action="@{/createTask/{position}(position=${'done'})}" th:object="${task}" method="post">
-        <input class="form-control btn-white btn-block" type="text" name="task" th:field="*{body}">
+        <input class="form-control btn-outline-primary btn-block" type="text" name="task" th:field="*{body}">
         <input class="form-control btn-block" type="hidden" name="task" th:field="*{position}">
-        <input class="btn bg-white text-success" type="submit" value="Add Task">
+        <input class="btn btn-outline-primary text-primary" type="submit" value="Add Task">
       </form>
     </div>
   </div>

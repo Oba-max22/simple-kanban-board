@@ -2,6 +2,7 @@ package com.decagon.obamax.kanban.service;
 
 import com.decagon.obamax.kanban.exception.RecordNotFoundException;
 import com.decagon.obamax.kanban.model.Task;
+import com.decagon.obamax.kanban.model.User;
 import com.decagon.obamax.kanban.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +17,9 @@ public class TaskService {
     @Autowired
     TaskRepository repository;
 
-    public List<Task> getAllTasks()
+    public List<Task> getAllTasks(User user)
     {
-        List<Task> result = repository.findAll();
+        List<Task> result = repository.findAllByUser(user);
 
         if(result.size() > 0) {
             return result;
