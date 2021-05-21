@@ -31,7 +31,7 @@
       <hr class="my-4">
       <div class = "alert border padding bg-white shadow" th:each="t : ${tasks}" th:if="${t.position.equals('todo')}">
         <h4 class="text-primary"  th:text="${t.body}"></h4>
-        <a th:href="@{/doing/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-arrow-left ml-2"></i></a>
+        <a th:href="@{/done/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-arrow-left ml-2"></i></a>
         <a th:href="@{/edit/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-user-edit ml-2"></i></a>
         <a th:href="@{/delete/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-user-times ml-2"></i></a>
         <a th:href="@{/doing/{id}(id=${t.id})}" class="btn btn-outline-primary"><i class="fas fa-arrow-right ml-2"></i></a>
